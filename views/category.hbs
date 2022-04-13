@@ -1,0 +1,19 @@
+<div id="page-wrapper">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <h1>Chi tiết 1 sản phẩm</h1>
+    <form role="form" action="/danh-muc/{{category._id}}/editcategory" method="post">
+        <div class="form-group">
+            <label class="control-label">Name</label>
+            <input type="text" value="{{category.name}}" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Description</label>
+            <textarea row="3" class="form-control" name="description">{{category.description}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-lg btn-success">Submit</button>
+        <button type="reset" class="btn btn-lg btn-success">Reset</button>
+    </form>
+</div>
+<div class="col-md-2"></div>
+</div>

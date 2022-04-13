@@ -1,0 +1,70 @@
+<div id="page-wrapper">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <h1>Thêm mới sản phẩm</h1>
+    <form role="form" action="/san-pham" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="control-label">Name</label>
+            <input type="text" onchange="validation()" id="name" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Price</label>
+            <input type="number" onchange="validation()" id="price" class="form-control" name="price">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Quantity</label>
+            <input type="number" onchange="validation()" id="quantity" class="form-control" name="quantity">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Image</label>
+            <input type="file"  onchange="onChangeFile();" id="image-file" name="image">
+            <img src="" style="display: none;" id="image-view" width="200" height="200">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Description</label>
+            <textarea row="3" class="form-control" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Category</label>
+            <select class="form-control" name="category_id">
+                {{#each categories}}
+                <option value="{{this._id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Released</label>
+            <input class="form-control" onchange="validation()" id="released" type="date" name="released">
+        </div>
+        <button type="submit" id="submit" disabled class="btn btn-lg btn-success">Submit</button>
+        <button type="reset" class="btn btn-lg btn-success">Reset</button>
+    </form>
+</div>
+<div class="col-md-2"></div>
+</div>
+<script>
+    const validation = () => {
+        const name = document.getElementById('name').value;
+        const price = document.getElementById('price').value;
+        const quantity = document.getElementById('quantity').value;
+        const released = document.getElementById('released').value;
+
+        const submit = document.getElementById('submit');
+
+        if(!name || name.trim().lenght == 0){
+            submit.disabled = true;
+        }else{
+            submit.disabled = false;
+        }
+    }
+
+    const onChangeFile = () => {
+        const file = document.getElementById('image-file').files[0];
+        const reader = new FileReader();
+        reader.onload = e => {
+            document.getElementById('image-view').src = e.target.result;
+            document.getElementById('image-view').style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    }
+</script>
